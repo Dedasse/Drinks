@@ -15,7 +15,7 @@ const Login = ({navigation}) => {
       </Title>
      
       
-        <Button block onPress={navigate('Home')}>
+        <Button block onPress={navigation.navigate('Home')}>
         <Text> 'Register'  'Login'</Text>
       </Button>
 
