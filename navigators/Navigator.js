@@ -8,6 +8,7 @@ import Home from '../views/Home';
 import Login from '../views/Login';
 import Add from '../views/Add';
 import Profile from '../views/Profile';
+import Single from '../views/Single';
 
 //import Upload from '../views/Upload';
 
@@ -40,7 +41,8 @@ const StackScreen = () => {
       {isLoggedIn ? (
         <>
           <Stack.Screen name="Home" component={TabScreen}/>
-          <Stack.Screen name="Add" component={Add}/>
+          <Stack.Screen name="Add" component={Add} />
+          <Stack.Screen name="Single" component={Single}/>
         </>
       ) : (
         <>

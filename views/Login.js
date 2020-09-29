@@ -15,7 +15,7 @@ const Login = ({navigation}) => {
       </Title>
      
       
-        <Button block onPress={navigation.navigate('Home')}>
+        <Button block onPress={() => {setIsLoggedIn(true)}}>
         <Text> 'Register'  'Login'</Text>
       </Button>
 
