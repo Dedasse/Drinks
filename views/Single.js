@@ -7,15 +7,17 @@ const Single = ({route}) => {
   const file = route.params.file;
   
   const ingredients = () => {
-    for (let n = 1; n < 15; n++) {
-      let helpv = `strIngredient${n}`;
+
+    let apu = [];
+    for (let n = 0; n < 14; n++) {
+      let helpv = `strIngredient${n+1}`;
       if (file[helpv] != null) {
-        {
-          console.log(file[helpv]);
-        setingredient(file[helpv])}
+        {apu[n]=(file[helpv])}
       }
-       
-    }}
+    }
+    console.log('abs',apu)
+    setingredient(apu);
+  }
   
   useEffect(() => {
     ingredients();
@@ -39,7 +41,7 @@ const Single = ({route}) => {
           <CardItem>
             <Body>
             <Text>
-                Increidients:
+                Ingredients:
                 {ingredient}   
             </Text>
             <Text>
