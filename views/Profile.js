@@ -15,7 +15,7 @@ const Profile = ({navigation}) => {
 
   const logout =  () => {
     setIsLoggedIn(false);
-    
+    navigation.navigate('Home');
   };
 
   return (

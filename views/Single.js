@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {Image} from 'react-native';
 import {Card, CardItem, Left, Container, Content, Icon,Text,Title, Body} from 'native-base';
 
-const Single = ({route}) => {
+const Single = ({route,navigation}) => {
   const [ingredient, setingredient] = useState([]);
   const file = route.params.file;
   
@@ -12,11 +12,11 @@ const Single = ({route}) => {
     for (let n = 0; n < 14; n++) {
       let helpv = `strIngredient${n+1}`;
       if (file[helpv] != null) {
-        {apu[n]=(file[helpv])}
+        {apu[n]=(file[helpv])+', '}
       }
     }
-    console.log('abs',apu)
     setingredient(apu);
+    console.log('Täällä', navigation);
   }
   
   useEffect(() => {

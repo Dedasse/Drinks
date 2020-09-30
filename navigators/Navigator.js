@@ -16,43 +16,59 @@ const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
 
-const TabScreen = () => {
-  return (
-    <Tab.Navigator>
-      <Tab.Screen name="Home" component={Home}
+
+const Navigator = () => {
+  const {isLoggedIn} = useContext(AuthContext);
+  
+  const TabScreen = () => {
+   
+    return (
+      <Tab.Navigator>
+         <Tab.Screen name="Home" component={Home}
+          options={{
+            tabBarIcon: ({color}) =>(
+              <Icon name={'home'} color={color} size={26}/> ),
+        }}/>
+        {isLoggedIn ? (
+          <>
+          <Tab.Screen name="Profile" component={Profile}
+          options={{
+            tabBarIcon: ({color}) => (
+              <Icon name={'finger-print'} color={color} size={26} />),
+            }}/>        
+          </>
+        ) : (
+          <>
+         
+        <Tab.Screen name="Login" component={Login}
         options={{
           tabBarIcon: ({color}) =>(
-            <Icon name={'home'} color={color} size={26}/> ),
-      }}
-      />
-      <Tab.Screen name="Profile" component={Profile}
-       options={{
-        tabBarIcon: ({color}) =>(
-          <Icon name={'finger-print'} color={color} size={26}/> ),
-    }}
-      />      
-      </Tab.Navigator>
-  );
- };
-const StackScreen = () => {
-  const {isLoggedIn} =useContext(AuthContext);
-  return (
-    <Stack.Navigator>
-      {isLoggedIn ? (
-        <>
-          <Stack.Screen name="Home" component={TabScreen}/>
-          <Stack.Screen name="Add" component={Add} />
-          <Stack.Screen name="Single" component={Single}/>
-        </>
-      ) : (
-        <>
-          <Stack.Screen name="Login" component={Login}/>
-        </>
-      )}
-    </Stack.Navigator>
-  );
- };
-const Navigator = () => {
+            <Icon name={'finger-print'} color={color} size={26}/> ),
+        }}/>
+          </>)}
+        </Tab.Navigator>
+    );
+   };
+  const StackScreen = () => {
+   
+    return (
+      <Stack.Navigator>
+        {isLoggedIn ? (
+          <>
+            <Stack.Screen name="Home" component={TabScreen}/>
+            <Stack.Screen name="Add" component={Add} />
+            <Stack.Screen name="Single" component={Single}/>
+          </>
+        ) : (
+          <>
+            <Stack.Screen name="Home" component={TabScreen}/>
+            <Stack.Screen name="Login" component={Login}/>
+            <Stack.Screen name="Single" component={Single}/>
+          </>
+        )}
+      </Stack.Navigator>
+    );
+   };
   return (
     <NavigationContainer>
       <StackScreen/>

@@ -3,12 +3,11 @@ import { FlatList } from "react-native";
 import ListItem from "./ListItems";
 import {useLoadMedia} from "../hooks/APIHooks";
 
-const url = 'https://www.thecocktaildb.com/api/json/v1/1/';
+
 
 
 const List = ({navigation}) => {
   const mediaArray = useLoadMedia();
-
   
 
   return (
