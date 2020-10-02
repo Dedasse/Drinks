@@ -1,22 +1,22 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {Image} from 'react-native';
 import {Card, CardItem, Left, Container, Content, Icon,Text,Title, Body} from 'native-base';
+import {AuthContext} from '../context/AuthContext';
 
 const Single = ({route,navigation}) => {
   const [ingredient, setingredient] = useState([]);
   const file = route.params.file;
+  const {isLoggedIn} = useContext(AuthContext);
   
-  const ingredients = () => {
+  const ingredients = () => { //erotellaan osaset 
 
     let apu = [];
     for (let n = 0; n < 14; n++) {
-      let helpv = `strIngredient${n+1}`;
-      if (file[helpv] != null) {
-        {apu[n]=(file[helpv])+', '}
+      if (file[`strIngredient${n+1}`] != null) {
+        {apu[n]=(file[`strIngredient${n+1}`])+', '+file[`strMeasure${n+1}`]+'. '}
       }
     }
     setingredient(apu);
-    console.log('Täällä', navigation);
   }
   
   useEffect(() => {
@@ -30,7 +30,7 @@ const Single = ({route,navigation}) => {
       <CardItem>
         <Left>
               <Icon name={'image'} />
-              <Body><Text> {file.strDrink}</Text></Body>
+              <Body><Text style={{fontSize: 25}}> {file.strDrink}</Text></Body>
         </Left>
           </CardItem>
           <CardItem cardBody>
@@ -38,17 +38,21 @@ const Single = ({route,navigation}) => {
               style={{height: 400, width: null, flex: 1}}
             />
           </CardItem>
-          <CardItem>
-            <Body>
-            <Text>
-                Ingredients:
-                {ingredient}   
-            </Text>
-            <Text>
-          {file.strInstructions}
-            </Text>
-            </Body>
-          </CardItem>
+          {isLoggedIn ? ( //näytetään osat ja ohje logautuneille
+          <>
+            <CardItem>
+              <Body>
+                <Text>
+                  Ingredients:
+                {ingredient}
+                </Text>
+                <Text>
+                  {file.strInstructions}
+                </Text>
+              </Body>
+              </CardItem>
+              </>):(<></>)
+          }
     </Card>
       </Content>
     </Container>
