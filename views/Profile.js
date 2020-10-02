@@ -13,8 +13,9 @@ const Profile = ({navigation}) => {
  
 
 
-  const logout =  () => {
+  const logout = async () => {
     setIsLoggedIn(false);
+    await AsyncStorage.clear();
     navigation.navigate('Home');
   };
 

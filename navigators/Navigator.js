@@ -10,7 +10,7 @@ import Add from '../views/Add';
 import Profile from '../views/Profile';
 import Single from '../views/Single';
 
-//import Upload from '../views/Upload';
+import Upload from '../views/Upload.js';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
