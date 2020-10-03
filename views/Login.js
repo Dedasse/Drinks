@@ -3,9 +3,9 @@ import {AuthContext} from '../context/AuthContext';
 import {checkToken} from '../hooks/APIHooks';
 import LoginForm from '../components/LoginForm';
 import RegisterForm from '../components/RegisterForm';
-import {Icon, Title, Container, Content, Text, Button, View} from 'native-base';
+import {Icon, Title, Container, Content, Text, Button, View, Thumbnail} from 'native-base';
 import AsyncStorage from '@react-native-community/async-storage';
-//import {useLoadMedia} from "../hooks/APIHooks";
+import {useLoadMedia} from "../hooks/APIHooks";
 import PropTypes from 'prop-types';
 
 
@@ -30,9 +30,10 @@ const Login = ({navigation}) => {
 
   
   const [loginImage, setLoginImage] = useState();
-
+  
   useEffect(() => {
     getToken();
+    
   }, [])
   return (
     <Container >

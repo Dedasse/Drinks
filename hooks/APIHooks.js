@@ -10,11 +10,12 @@ const useLoadMedia = (limit) => {
   
 
   const loadMedia = async () => {
+    console.log('FTW', limit);
     let json = [];
 
     try {
-      console.log(!limit); 
-      if (limit == null) {
+      
+      if ( limit == null) {
         const response = await fetch(drinksurl + 'randomselection.php'); 
          json = await response.json();
       } else {

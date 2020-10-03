@@ -4,7 +4,7 @@ import List from '../components/List';
 
 const Home=({navigation})=>{
   return <View>
-    <List navigation={navigation}/>
+    <List navigation={navigation} output="2"/>
     <StatusBar barStyle = "dark-content" hidden = {false} backgroundColor = "lightgreen" translucent = {true}/>
   </View>
 };
