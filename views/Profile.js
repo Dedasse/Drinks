@@ -45,7 +45,8 @@ const Profile = ({navigation}) => {
                 </Body>
               </CardItem>
               <CardItem bordered>
-                <Body>
+              <Body>
+                <Button block><Text>Upload new Avatar</Text></Button>
                   <Button
                     block
                     onPress={logout}>

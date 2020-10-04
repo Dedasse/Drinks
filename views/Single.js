@@ -1,12 +1,14 @@
 import React, {useContext, useEffect, useState} from 'react';
 import {Image} from 'react-native';
-import {Card, CardItem, Left, Container, Content, Icon,Text,Title, Body} from 'native-base';
+import {Card, CardItem, Left, Container, Content, Icon,Text,Title, Body, Button} from 'native-base';
 import {AuthContext} from '../context/AuthContext';
+import StarRating from 'react-native-star-rating';
 
 const Single = ({route,navigation}) => {
   const [ingredient, setingredient] = useState([]);
   const file = route.params.file;
   const {isLoggedIn} = useContext(AuthContext);
+  const [starCount, setStarCount] = useState(1);
   
   const ingredients = () => { //erotellaan osaset 
 
@@ -22,6 +24,11 @@ const Single = ({route,navigation}) => {
   useEffect(() => {
     ingredients();
   }, []);
+
+  const onStarRatingPress = (rating) => {
+    console.log('aijiji', starCount)
+    setStarCount(rating);
+  }
 
   return (
     <Container>
@@ -48,7 +55,17 @@ const Single = ({route,navigation}) => {
                 </Text>
                 <Text>
                   {file.strInstructions}
-                </Text>
+                  </Text>
+                  <StarRating
+                    disabled={false}
+                    maxStars={5}
+                    rating={starCount}
+                    selectedStar={(rating) => onStarRatingPress(rating)}
+                    fullStarColor={'red'}
+                  />
+                  <Button>
+                    <Text>Save rating and upload</Text>
+                  </Button>
               </Body>
               </CardItem>
               </>):(<></>)

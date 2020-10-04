@@ -19,7 +19,7 @@ const ListItem2 = ({navigation,singleMedia}) => {
       <Button transparent
 
        onPress={() => {
-          navigation.navigate('Bingle', {file: singleMedia})
+          navigation.navigate('Single', {file: singleMedia})
         }}>
         <Icon name={'eye'}/>
         </Button>
