@@ -11,7 +11,6 @@ const Single = ({route,navigation}) => {
   const [starCount, setStarCount] = useState(1);
   
   const ingredients = () => { //erotellaan osaset 
-
     let apu = [];
     for (let n = 0; n < 14; n++) {
       if (file[`strIngredient${n+1}`] != null) {
@@ -25,8 +24,7 @@ const Single = ({route,navigation}) => {
     ingredients();
   }, []);
 
-  const onStarRatingPress = (rating) => {
-    console.log('aijiji', starCount)
+  const onStarRatingPress = (rating) => { //tähdet 
     setStarCount(rating);
   }
 

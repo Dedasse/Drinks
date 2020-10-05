@@ -31,6 +31,11 @@ const Navigator = () => {
         }}/>
         {isLoggedIn ? (
           <>
+            <Tab.Screen name="MyScreens" component={Add}
+          options={{
+            tabBarIcon: ({color}) => (
+              <Icon name={'finger-print'} color={color} size={26} />),
+            }}/>   
           <Tab.Screen name="Profile" component={Profile}
           options={{
             tabBarIcon: ({color}) => (

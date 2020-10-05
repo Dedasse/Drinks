@@ -5,7 +5,7 @@ const drinkurl = 'https://www.thecocktaildb.com/api/json/v1/1/';
 const apiUrl = 'http://media.mw.metropolia.fi/wbma/';
 const appIdentifier = 'drinksut';
 
-const useLoadMedia = (limit) => {
+const useLoadMedia = (limit=null) => {
   const [mediaArray, setMediaArray] = useState([]);
   
 

@@ -3,7 +3,8 @@ import {Image} from 'react-native';
 import {AuthContext} from '../context/AuthContext';
 import AsyncStorage from '@react-native-community/async-storage';
 import {Icon, Content,Text,Button, Container, Left, CardItem,Card, Body} from 'native-base';
-
+import {getAvatar} from '../hooks/APIHooks';
+import PropTypes from 'prop-types';
 
 
 const mediaUrl = 'http://media.mw.metropolia.fi/wbma/uploads/';
@@ -12,6 +13,14 @@ const Profile = ({navigation}) => {
   const [avatar, setAvatar] = useState([{filename: ''}]);
  
 
+  const fetchAvatar = async () => {
+    setAvatar(await getAvatar(user.user_id));
+  };
+
+
+  useEffect(() => {
+    fetchAvatar();
+  }, []);
 
   const logout = async () => {
     setIsLoggedIn(false);
@@ -36,7 +45,8 @@ const Profile = ({navigation}) => {
                  : {uri: 'http://placekitten.com/400/300'}
                 }
                   style={{height: 400, width: null, flex: 1}}
-                />
+              />
+              {console.log('MEDIA ',avatar)}
               </CardItem>
               <CardItem bordered>
                 <Body>
@@ -62,6 +72,8 @@ const Profile = ({navigation}) => {
   );
 };
 
-
+Profile.propTypes = {
+  navigation: PropTypes.object,
+};
 
 export default Profile;

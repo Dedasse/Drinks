@@ -3,6 +3,7 @@ import {AuthProvider} from './context/AuthContext';
 import Navigator from './navigators/Navigator';
 import * as Expo from "expo";
 import * as Font from 'expo-font';
+import * as SplashScreen from 'expo-splash-screen';
 
 const App = () => {
   const [fontReady, setFontReady] = useState(false);
