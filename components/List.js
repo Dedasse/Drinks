@@ -1,15 +1,28 @@
-import React, {useState, useEffect}from "react";
+import React, {useState, useEffect, useContext}from "react";
 import { FlatList } from "react-native";
 import ListItem from "./ListItems";
 import ListItem2 from "./ListItem2";
-import {useLoadMedia} from "../hooks/APIHooks";
+import {getAvatar, useLoadMedia} from "../hooks/APIHooks";
+import {AuthContext} from "../context/AuthContext";
 
 
 
 
 const List = ({navigation, output}) => {
   const mediaArray = useLoadMedia();
-  
+  const {setIsLoggedIn, user} = useContext(AuthContext);
+  const [avatar, setAvatar] = useState([{filename: ''}]);
+ 
+
+  const fetchAvatar = async () => {
+    setAvatar(await getAvatar(user.user_id));
+  };
+
+
+  useEffect(() => {
+    fetchAvatar();
+  }, []);
+
 
   if (output == 1) {
     return (
@@ -26,7 +39,7 @@ const List = ({navigation, output}) => {
     return (
       <FlatList
         keyExtractor={(item, index) => index.toString()}
-        data={mediaArray}
+        data={avatar}
         renderItem={({item}) =>
           <ListItem2
             navigation={navigation}

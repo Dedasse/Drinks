@@ -1,16 +1,18 @@
-import {Container, Content, Form, Button,Text, Spinner} from "native-base";
-import React, {useState,useEffect} from "react";
+import React, {useState,useEffect, useContext} from "react";
+import {Container, Content, Form, Button,Text, Spinner, Title} from "native-base";
 import PropTypes from 'prop-types';
 import FormTextInput from "../components/FormTextInput";
 import {Image,Platform} from "react-native";
 import useUploadForm from '../hooks/UploadHooks';
 import * as ImagePicker from 'expo-image-picker';
-// import Constants from 'expo-constants';
+import Constants from 'expo-constants';
 import * as Permissions from 'expo-permissions';
 import axios from 'axios';
 import {appIdentifier, postTag, upload, useLoadMedia} from "../hooks/APIHooks";
 import AsyncStorage from "@react-native-community/async-storage";
 import {Video} from "expo-av";
+import List from "../components/List";
+import {AuthContext} from "../context/AuthContext";
 
 
 
@@ -19,6 +21,8 @@ const Upload = ({navigation}) => {
   const [image, setImage] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [fileType, setFileType] = useState('image');
+  const {setIsLoggedIn, user} = useContext(AuthContext);
+  
 
   const pickImage = async () => {
     try {
@@ -34,33 +38,36 @@ const Upload = ({navigation}) => {
       }
 
       console.log(result);
-    } catch (E) {
-      console.log(E);
+    } catch (e) {
+      console.log(e);
     }
   };
 
   const doUpload = async () => {
     setIsLoading(true);
+    
     try {
-      const formData = new FormData();
+      const formData = new FormData(); 
       formData.append('title', inputs.title);
       formData.append('description', inputs.description);
 
       const filename = image.split('/').pop();
       const match = /\.(\w+)$/.exec(filename);
-
       let type = match ? `${fileType}/${match[1]}` : fileType;
       if (type === 'image/jpg') type = 'image/jpeg';
+
+
       formData.append('file', {uri: image, name: filename, type});
       //token
       const userToken = await AsyncStorage.getItem('userToken');
+      
       //upload
       const resp = await upload(formData, userToken);
       console.log('File uploaded', resp);
 
       const postTagResponce = await postTag({
         file_id: resp.file_id,
-        tag: appIdentifier,
+        tag: user.user_id,
       }, userToken);
       console.log(' posting', postTagResponce);
 
@@ -71,6 +78,7 @@ const Upload = ({navigation}) => {
       }, 2000);
       setIsLoading(false);
     } catch (e) {
+      
       throw new Error('ai perkele', e);
     } finally {
       setIsLoading(false);
@@ -107,6 +115,7 @@ const Upload = ({navigation}) => {
   return (
     <Container>
       <Content padder>
+        <List navigation={navigation} output="2" id="user_id"/>
         {image &&
           <>
           {fileType === 'image' ?

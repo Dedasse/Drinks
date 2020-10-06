@@ -29,8 +29,6 @@ const Login = ({navigation}) => {
   };
 
   
-  const [loginImage, setLoginImage] = useState();
-  
   useEffect(() => {
     setIsLoggedIn(false);
     getToken();

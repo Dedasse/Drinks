@@ -43,8 +43,7 @@ const Navigator = () => {
             }}/>        
           </>
         ) : (
-          <>
-         
+          <>        
         <Tab.Screen name="Login" component={Login}
         options={{
           tabBarIcon: ({color}) =>(
@@ -62,7 +61,9 @@ const Navigator = () => {
           <>
             <Stack.Screen name="Home" component={TabScreen}/>
             <Stack.Screen name="Add" component={Add} />
-            <Stack.Screen name="Single" component={Single}/>
+            <Stack.Screen name="Single" component={Single} />
+            <Stack.Screen name="Profile" component={Profile} />
+            <Stack.Screen name="Upload" component={Upload} />
           </>
         ) : (
           <>

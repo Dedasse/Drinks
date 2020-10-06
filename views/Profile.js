@@ -55,13 +55,13 @@ const Profile = ({navigation}) => {
                 </Body>
               </CardItem>
               <CardItem bordered>
-              <Body>
-                <Button block><Text>Upload new Avatar</Text></Button>
+              <Body> 
                   <Button
                     block
                     onPress={logout}>
                     <Text>Logout</Text>
-                  </Button>
+                </Button>
+                <Button block onPress={() => navigation.navigate('Upload')} style={{marginBottom: 5}}><Text>Upload new Avatar</Text></Button>
                 </Body>
               </CardItem>
             </Left>

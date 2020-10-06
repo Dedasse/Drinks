@@ -19,7 +19,7 @@ const useLoadMedia = (limit=null) => {
         const response = await fetch(drinksurl + 'randomselection.php'); 
          json = await response.json();
       } else {
-        const response = await fetch(drinkurl + 'random.php');
+        const response = await fetch(apiUrl + 'random.php');
          json = await response.json();
       }
         setMediaArray(json.drinks);        
@@ -27,7 +27,7 @@ const useLoadMedia = (limit=null) => {
         console.log('loadMedia error', error);
       }
     
-      return mediaArray;
+      //return mediaArray;
   };
 
   useEffect(() => {
@@ -132,7 +132,7 @@ const useLoadMedia = (limit=null) => {
         'x-access-token': token},
       data: fd,
       url: apiUrl + 'media',
-    }
+    };
     try {
       const response = await axios(options);
       return response.data;

@@ -1,31 +1,21 @@
 import React, { useState } from "react";
 import {ListItem as NBListItem, Left, Right, Button,Thumbnail,Body, Icon,Text} from 'native-base';
 import PropTypes from "prop-types";
+import {TouchableOpacity} from "react-native-gesture-handler";
 
 
 const ListItem2 = ({navigation,singleMedia}) => {
   
-  
   return (
+    <TouchableOpacity style={{margin:5}} onPress={() => {
+      navigation.navigate('Profile');
+    }}>
     <NBListItem thumbnail>
-    <Left>
-      <Thumbnail square source={{ uri:  singleMedia.strDrinkThumb}} />
-    </Left>
-    <Body>
-      <Text >{singleMedia.strDrink}</Text>
-      <Text note >{singleMedia.description}</Text>
-    </Body>
-    <Right>
-      <Button transparent
-
-       onPress={() => {
-          navigation.navigate('Single', {file: singleMedia})
-        }}>
-        <Icon name={'eye'}/>
-        </Button>
-    </Right>
+    
+      <Thumbnail square source={{ uri: 'http://media.mw.metropolia.fi/wbma/uploads/' + singleMedia.filename}} />
+    
   </NBListItem>
-
+    </TouchableOpacity>
   );
 };
 
