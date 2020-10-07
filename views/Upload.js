@@ -17,13 +17,13 @@ import {AuthContext} from "../context/AuthContext";
 
 
 
-const Upload = ({navigation}) => {
+const Upload = ({navigation,route}) => {
   const [image, setImage] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [fileType, setFileType] = useState('image');
   const {setIsLoggedIn, user} = useContext(AuthContext);
   
-
+  //console.log('"#¤"#¤', route.params.avatar);
   const pickImage = async () => {
     try {
       let result = await ImagePicker.launchImageLibraryAsync({
@@ -116,7 +116,7 @@ const Upload = ({navigation}) => {
   return (
     <Container>
       <Content padder>
-        <List navigation={navigation} output="2" id="user_id"/>
+        <List navigation={navigation} output="2" id="user_id" route={route.params.avatar}/>
         {image &&
           <>
           {fileType === 'image' ?

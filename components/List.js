@@ -8,7 +8,7 @@ import {AuthContext} from "../context/AuthContext";
 
 
 
-const List = ({navigation, output}) => {
+const List = ({navigation, output,route}) => {
   const mediaArray = useLoadMedia();
   const {setIsLoggedIn, user} = useContext(AuthContext);
   const [avatar, setAvatar] = useState([{filename: ''}]);
@@ -32,7 +32,8 @@ const List = ({navigation, output}) => {
         renderItem={({item}) =>
           <ListItem
             navigation={navigation}
-            singleMedia={item} />
+            singleMedia={item}
+            />
         } />
     );
   } else {
@@ -44,7 +45,8 @@ const List = ({navigation, output}) => {
         renderItem={({item}) =>
           <ListItem2
             navigation={navigation}
-            singleMedia={item} />
+            singleMedia={item}
+            route={route}/>
         } />
     )
   }

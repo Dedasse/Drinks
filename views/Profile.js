@@ -10,18 +10,26 @@ import PropTypes from 'prop-types';
 const mediaUrl = 'http://media.mw.metropolia.fi/wbma/uploads/';
 const Profile = ({navigation}) => {
   const {setIsLoggedIn, user} = useContext(AuthContext);
+ 
   const [avatar, setAvatar] = useState([{filename: ''}]);
  
 
   const fetchAvatar = async () => {
-    setAvatar(await getAvatar(user.user_id));
+    const response = await getAvatar(user.user_id);
+    
+    const data = response.filter(item => {
+      return item.description == 'set'
+    });
+    setAvatar(data); 
   };
-
-
+  
+  
   useEffect(() => {
     fetchAvatar();
+    console.log('tämäs', avatar);
   }, []);
 
+  
   const logout = async () => {
     setIsLoggedIn(false);
     await AsyncStorage.clear();
@@ -46,7 +54,7 @@ const Profile = ({navigation}) => {
                 }
                   style={{height: 400, width: null, flex: 1}}
               />
-              {console.log('MEDIA ',avatar)}
+              
               </CardItem>
               <CardItem bordered>
                 <Body>
@@ -56,12 +64,12 @@ const Profile = ({navigation}) => {
               </CardItem>
               <CardItem bordered>
               <Body> 
+                <Button block onPress={() => navigation.navigate('Upload',{avatar})} style={{marginBottom: 5}}><Text>Upload new or set Avatar</Text></Button>
                   <Button
                     block
                     onPress={logout}>
                     <Text>Logout</Text>
                 </Button>
-                <Button block onPress={() => navigation.navigate('Upload')} style={{marginBottom: 5}}><Text>Upload new Avatar</Text></Button>
                 </Body>
               </CardItem>
             </Left>

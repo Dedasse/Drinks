@@ -28,12 +28,12 @@ const Login = ({navigation}) => {
     }
   };
 
-  
   useEffect(() => {
     setIsLoggedIn(false);
     getToken();
     
-  }, [])
+  }, []);
+
   return (
     <Container >
     <Content padder>

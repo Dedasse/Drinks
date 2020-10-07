@@ -11,7 +11,7 @@ const useLoadMedia = (limit=null) => {
   
 
   const loadMedia = async () => {
-    console.log('FTW', limit);
+    
     let json = [];
 
     try {
