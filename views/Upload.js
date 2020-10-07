@@ -7,7 +7,7 @@ import useUploadForm from '../hooks/UploadHooks';
 import * as ImagePicker from 'expo-image-picker';
 import Constants from 'expo-constants';
 import * as Permissions from 'expo-permissions';
-import axios from 'axios';
+
 import {appIdentifier, postTag, upload, useLoadMedia} from "../hooks/APIHooks";
 import AsyncStorage from "@react-native-community/async-storage";
 import {Video} from "expo-av";
@@ -53,6 +53,7 @@ const Upload = ({navigation}) => {
 
       const filename = image.split('/').pop();
       const match = /\.(\w+)$/.exec(filename);
+
       let type = match ? `${fileType}/${match[1]}` : fileType;
       if (type === 'image/jpg') type = 'image/jpeg';
 

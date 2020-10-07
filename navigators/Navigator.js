@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useEffect} from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createStackNavigator} from '@react-navigation/stack';
 import {NavigationContainer} from '@react-navigation/native';
@@ -11,6 +11,8 @@ import Profile from '../views/Profile';
 import Single from '../views/Single';
 
 import Upload from '../views/Upload.js';
+import AsyncStorage from '@react-native-community/async-storage';
+import {checkToken} from '../hooks/APIHooks';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -18,8 +20,29 @@ const Stack = createStackNavigator();
 
 
 const Navigator = () => {
-  const {isLoggedIn} = useContext(AuthContext);
+  const {isLoggedIn,setIsLoggedIn,setUser} = useContext(AuthContext);
   
+  const getToken = async () => {
+    const userToken = await AsyncStorage.getItem('userToken');
+
+    if (userToken) {
+      try {
+        const userData = await checkToken(userToken);
+        console.log('token valid', userData);
+        setUser(userData);
+        setIsLoggedIn(true);
+      } catch (e) {
+        console.log('token chek failed', e.message);
+      }
+
+    }
+  };
+
+  useEffect(() => {
+    //setIsLoggedIn(false);
+    getToken();
+  }, [])
+
   const TabScreen = () => {
    
     return (

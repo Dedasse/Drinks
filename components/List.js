@@ -38,6 +38,7 @@ const List = ({navigation, output}) => {
   } else {
     return (
       <FlatList
+        horizontal={true}
         keyExtractor={(item, index) => index.toString()}
         data={avatar}
         renderItem={({item}) =>

@@ -4,6 +4,7 @@ const drinksurl='https://www.thecocktaildb.com/api/json/v2/9973533/'
 const drinkurl = 'https://www.thecocktaildb.com/api/json/v1/1/';
 const apiUrl = 'http://media.mw.metropolia.fi/wbma/';
 const appIdentifier = 'drinksut';
+import axios from 'axios';
 
 const useLoadMedia = (limit=null) => {
   const [mediaArray, setMediaArray] = useState([]);

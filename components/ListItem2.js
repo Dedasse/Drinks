@@ -7,7 +7,8 @@ import {TouchableOpacity} from "react-native-gesture-handler";
 const ListItem2 = ({navigation,singleMedia}) => {
   
   return (
-    <TouchableOpacity style={{margin:5}} onPress={() => {
+    <TouchableOpacity style={{margin: 5}} onPress={() => {
+      
       navigation.navigate('Profile');
     }}>
     <NBListItem thumbnail>
