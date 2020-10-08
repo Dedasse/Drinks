@@ -1,47 +1,56 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 
 import {Icon, Title, Container, Content, Text, Button, View, Thumbnail, Card, CardItem, CheckBox,ListItem} from 'native-base';
 import List from '../components/List';
-//import ListItem from '../components/ListItems';
+import {SafeAreaView} from 'react-native-safe-area-context';
+import { useIsFocused} from '@react-navigation/native'; 
 
 const Add = ({navigation}) => {
-  //const [ingredient,setIngredient]=useState('')
+  const [haku,setHaku]=useState([])
   const searchapi = "https://www.thecocktaildb.com/api/json/v2/9973533/filter.php?i=";
   const [Vodka, setVodka] = useState(false);
   const [Gin, setGin] = useState(false);
   const [Rum, setRum] = useState(false);
-  const [Milk,setMilk] = useState(false);
+  const [Milk, setMilk] = useState(false);
   
+  
+  
+  const search = async() => {
+    let options = [];
+    if (Vodka) {options += "Vodka,"};
+    if (Gin) {options += "Gin,"};
+    if (Rum) {options += "Rum,"};
+    if (Milk) {options += "Milk"};
+    console.log('ad', options);
 
-  const search = () => {
-  /*  const loadMedia = async () => {
+    
     
       let json = [];
   
       try {
-          const response = await fetch(searchapi + 'randomselection.php'); 
+          const response = await fetch(searchapi + options); 
            json = await response.json();
-        
-          setMediaArray(json.drinks);        
+           setHaku(json.drinks);        
+           console.log('lista',haku);
         } catch (error) {
           console.log('loadMedia error', error);
         }
-      
-        //return mediaArray;
-    };   */
+    
+    };   
  
-  };
+  
 
+    
 
   return (
     <Container>
-      <Content padder>
-      <Card style={{flex:1}}>
-    <List output='1'/>
-      </Card>
+      
+      <SafeAreaView style={{flex:1}}>
+          <List navigation={navigation} output='1' other={haku}/>
+      </SafeAreaView>
 
-      </Content>
-      <CardItem style={{flex: .5}}>
+      
+      <CardItem style={{flex: .3}}>
         <ListItem >
           <CheckBox style={{marginRight:15}} checked={Vodka} onPress={() => setVodka(!Vodka)}/>
           <Text>Vodka</Text>

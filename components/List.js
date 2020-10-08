@@ -8,7 +8,7 @@ import {AuthContext} from "../context/AuthContext";
 
 
 
-const List = ({navigation, output,route}) => {
+const List = ({navigation, output,route,haku}) => {
   const mediaArray = useLoadMedia();
   const {setIsLoggedIn, user} = useContext(AuthContext);
   const [avatar, setAvatar] = useState([{filename: ''}]);
@@ -30,6 +30,7 @@ const List = ({navigation, output,route}) => {
       style={{backgroundColor:'#293985'}}
         keyExtractor={(item, index) => index.toString()}
         data={mediaArray}
+        extraData={haku}
         renderItem={({item}) =>
           <ListItem
             navigation={navigation}
