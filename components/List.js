@@ -27,6 +27,7 @@ const List = ({navigation, output,route}) => {
   if (output == 1) {
     return (
       <FlatList
+      style={{backgroundColor:'#293985'}}
         keyExtractor={(item, index) => index.toString()}
         data={mediaArray}
         renderItem={({item}) =>
@@ -39,6 +40,7 @@ const List = ({navigation, output,route}) => {
   } else {
     return (
       <FlatList
+        
         horizontal={true}
         keyExtractor={(item, index) => index.toString()}
         data={avatar}

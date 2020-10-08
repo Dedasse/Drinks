@@ -1,5 +1,5 @@
 import React, {useState,useEffect, useContext} from "react";
-import {Container, Content, Form, Button,Text, Spinner, Title} from "native-base";
+import {Container, Content, Form, Button,Text, Spinner, Title, Card} from "native-base";
 import PropTypes from 'prop-types';
 import FormTextInput from "../components/FormTextInput";
 import {Image,Platform} from "react-native";
@@ -116,7 +116,11 @@ const Upload = ({navigation,route}) => {
   return (
     <Container>
       <Content padder>
-        <List navigation={navigation} output="2" id="user_id" route={route.params.avatar}/>
+        <Card>
+          <Text style={{alignSelf:'center'}}>Set your Avatar</Text>
+        <List navigation={navigation} output="2" id="user_id" route={route.params.avatar} />
+        </Card>
+        
         {image &&
           <>
           {fileType === 'image' ?

@@ -31,9 +31,12 @@ const ListItem2 = ({navigation,singleMedia,route}) => {
 
   return (
     <TouchableOpacity style={{margin: 5}} onPress={() => {
-      console.log('file', singleMedia);
+      //console.log('file', singleMedia);
       doModify();
-      navigation.navigate('Profile');
+      setTimeout(() => {
+        navigation.navigate('Profile');
+      }, 2000);
+     // navigation.navigate('Profile');
     }}>
     <NBListItem thumbnail>
     
