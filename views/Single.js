@@ -29,10 +29,10 @@ const Single = ({route,navigation}) => {
   }
 
   return (
-    <Container>
-      <Content padder>
-      <Card>
-      <CardItem>
+    <Container style={{backgroundColor:'#293985'}}>
+      <Content padder >
+      <Card >
+      <CardItem style={{backgroundColor:'#448574'}}>
         <Left>
               <Icon name={'image'} />
               <Body><Text style={{fontSize: 25}}> {file.strDrink}</Text></Body>
@@ -45,13 +45,14 @@ const Single = ({route,navigation}) => {
           </CardItem>
           {isLoggedIn ? ( //näytetään osat ja ohje logautuneille
           <>
-            <CardItem>
+            <CardItem style={{backgroundColor:'#60d1b5'}}>
               <Body>
-                <Text>
-                  Ingredients:
+                  <Text style={{marginBottom:5,borderWidth:1,color:'white',backgroundColor:'#448574'}}>
+                    Ingredients:
+                     
                 {ingredient}
                 </Text>
-                <Text>
+                <Text style={{marginBottom:5,borderWidth:1,color:'white',backgroundColor:'#448574'}}>
                   {file.strInstructions}
                   </Text>
                   <StarRating
@@ -59,7 +60,7 @@ const Single = ({route,navigation}) => {
                     maxStars={5}
                     rating={starCount}
                     selectedStar={(rating) => onStarRatingPress(rating)}
-                    fullStarColor={'red'}
+                    fullStarColor={'#d19756'}
                   />
                   <Button>
                     <Text>Save rating and upload</Text>

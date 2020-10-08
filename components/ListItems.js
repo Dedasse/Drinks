@@ -8,15 +8,15 @@ const ListItem = ({navigation,singleMedia}) => {
  
   
   return (
-    <TouchableOpacity style={{margin:5}} onPress={() => {
+    <TouchableOpacity style={{marginBottom:5,backgroundColor:'#293985' }} onPress={() => {
       navigation.navigate('Single', {file: singleMedia})
     }}>
-      <NBListItem thumbnail >
+      <NBListItem thumbnail style={{backgroundColor: '#4b63d1'}} >
     <Left>
           <Thumbnail style={{width:80,height:120}} source={{ uri:  singleMedia.strDrinkThumb}} />
     </Left>
     <Body>
-          <Text style={{fontSize:24}}>{singleMedia.strDrink}</Text>
+          <Text style={{fontSize:24,color:'white'}}>{singleMedia.strDrink}</Text>
       
     </Body>
    
