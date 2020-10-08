@@ -3,8 +3,10 @@ import React, {useState} from 'react';
 import {Icon, Title, Container, Content, Text, Button, View, Thumbnail, Card, CardItem, CheckBox,ListItem} from 'native-base';
 import List from '../components/List';
 //import ListItem from '../components/ListItems';
+
 const Add = ({navigation}) => {
   //const [ingredient,setIngredient]=useState('')
+  const searchapi = "https://www.thecocktaildb.com/api/json/v2/9973533/filter.php?i=";
   const [Vodka, setVodka] = useState(false);
   const [Gin, setGin] = useState(false);
   const [Rum, setRum] = useState(false);
@@ -12,9 +14,22 @@ const Add = ({navigation}) => {
   
 
   const search = () => {
-    let terms = [{Vodka, Gin, Rum, Milk}];
+  /*  const loadMedia = async () => {
+    
+      let json = [];
   
-    console.log('terms', terms);
+      try {
+          const response = await fetch(searchapi + 'randomselection.php'); 
+           json = await response.json();
+        
+          setMediaArray(json.drinks);        
+        } catch (error) {
+          console.log('loadMedia error', error);
+        }
+      
+        //return mediaArray;
+    };   */
+ 
   };
 
 
