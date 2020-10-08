@@ -39,7 +39,7 @@ const RegisterForm = ({navigation}) => {
     }
   };
 
-  console.log('RegisterForm', registerErrors);
+  console.log('RegisterForma', registerErrors);
 
   return (
     <Form>

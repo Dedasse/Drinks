@@ -52,8 +52,8 @@ const useSignUpForm = (callback) => {
 
 
   const handleInputChange = (name, text) => {
-    // handle just input, no validation
-    // console.log('RegisterHooks.js', name, text);
+   
+     //console.log('RegisterHooks.js', name, text);
     setInputs((inputs) => {
       return {
         ...inputs,
